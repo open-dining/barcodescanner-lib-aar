@@ -110,6 +110,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
   private TextView statusView;
   private Button flipButton;
   private Button torchButton;
+  private Button closeButton;
   private View resultView;
   private Result lastResult;
   private boolean hasSurface;
@@ -193,6 +194,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
     statusView = (TextView) findViewById(R.id.status_view);
     flipButton = (Button) findViewById(R.id.flip_button);
     torchButton = (Button) findViewById(R.id.torch_button);
+    closeButton = (Button) findViewById(R.id.close_button);
 
     handler = null;
     lastResult = null;
@@ -824,6 +826,13 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
     statusView.setVisibility(View.VISIBLE);
     viewfinderView.setVisibility(View.VISIBLE);
     lastResult = null;
+
+    closeButton.setOnClickListener(new Button.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        finish();
+      }
+    });
 
     // in case the device has multiple camera's and we want to show the flip button: show the flip button :)
     if (getIntent().getBooleanExtra(Intents.Scan.SHOW_FLIP_CAMERA_BUTTON, false)) {
